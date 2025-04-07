@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>สัตว์เลี้ยง</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h2>สัตว์เลี้ยงของคุณ 🐶</h2>
+  <p>ระดับพลัง: <span id="petLevel">1</span></p>
+  <button onclick="feedPet()">ให้อาหาร</button>
+
+  <script>
+    let level = 1;
+    function feedPet() {
+      level++;
+      document.getElementById('petLevel').innerText = level;
+    }
+  </script>
+</body>
+</html>
