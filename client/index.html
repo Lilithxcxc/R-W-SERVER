@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>โปรไฟล์ผู้ใช้</title>
+  <style>
+    img { max-width: 100px; }
+    .container { padding: 20px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 id="name"></h1>
+    <img id="avatar" alt="Avatar">
+    <h2>สัตว์เลี้ยง</h2>
+    <p id="pet-name"></p>
+    <img id="pet-img" alt="Pet">
+    <p>Level: <span id="pet-lv"></span></p>
+
+    <h2>ฟาร์มของคุณ</h2>
+    <div id="farm"></div>
+  </div>
+
+  <script>
+    async function loadUser() {
+      const res = await fetch('http://localhost:3000/api/users/mike');
+      const user = await res.json();
+
+      document.getElementById('name').innerText = user.displayName;
+      document.getElementById('avatar').src = user.avatarUrl;
+
+      document.getElementById('pet-name').innerText = user.pet.name;
+      document.getElementById('pet-img').src = user.pet.imageUrl;
+      document.getElementById('pet-lv').innerText = user.pet.level;
+
+      const farmDiv = document.getElementById('farm');
+      user.farm.forEach(plant => {
+        const img = document.createElement('img');
+        img.src = plant.imageUrl;
+        farmDiv.appendChild(img);
+      });
+    }
+
+    loadUser();
+  </script>
+</body>
+</html>
